@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 
 const ModalContainerStyle = styled.div`
-  display: none;
   position: fixed;
   z-index: 1;
   padding-top: 100px;

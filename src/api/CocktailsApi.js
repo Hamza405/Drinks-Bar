@@ -1,4 +1,4 @@
-import { endpoint } from "../utils/constans";
+import { endpoint } from "../utils/constants";
 
 export async function getCocktailsRequest() {
   const res = await fetch(`${endpoint}search.php?s`);

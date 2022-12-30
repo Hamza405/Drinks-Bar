@@ -1,7 +1,7 @@
 import { getCocktailsRequest } from "../../api/CocktailsApi";
 import { replaceDrinks } from "../slices/CocktailsSlice";
 import { showNotification } from "../slices/UiSlice";
-import { ERROR_STATUS } from "../../utils/constans";
+import { ERROR_STATUS } from "../../utils/constants";
 export const getDrinks = () => {
   return async (dispatch) => {
     try {
