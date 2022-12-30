@@ -4,7 +4,7 @@ import {
   CardBody,
   CardHeader,
   CardDes,
-} from "../styles/CocktailsStyles";
+} from "../../styles/CocktailsStyles";
 
 const Card = ({ title, img, des }) => {
   return (

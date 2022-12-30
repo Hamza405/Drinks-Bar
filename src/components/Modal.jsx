@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import FormControl from "./Stepper/FormControl";
+import Stepper from "./Stepper/Stepper";
+import Order from "./Stepper/Steps/Order";
+import OrderDetails from "./Stepper/Steps/OrderDetails";
+import PersonInfo from "./Stepper/Steps/PersonInfo";
 
 const ModalContainerStyle = styled.div`
   position: fixed;
@@ -23,9 +28,24 @@ const ModalContentStyle = styled.div`
 `;
 
 const Modal = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  const steps = ["Personal Info", "Order", "OrderDetails"];
+  const displaySteps = (step) => {
+    switch (step) {
+      case 1:
+        return <PersonInfo />;
+      case 2:
+        return <Order />;
+      case 3:
+        return <OrderDetails />;
+    }
+  };
   return (
     <ModalContainerStyle>
-      <ModalContentStyle>HHiiii</ModalContentStyle>
+      <ModalContentStyle>
+        <Stepper steps={steps} currentStep={currentStep} />
+        <FormControl />
+      </ModalContentStyle>
     </ModalContainerStyle>
   );
 };

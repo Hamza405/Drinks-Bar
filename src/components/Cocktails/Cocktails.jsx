@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { CocktailsContainer } from "../styles/CocktailsStyles";
+import { CocktailsContainer } from "../../styles/CocktailsStyles";
 import Card from "./Card";
 
 const Cocktails = () => {
