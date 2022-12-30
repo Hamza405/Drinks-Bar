@@ -23,3 +23,10 @@ export const CardHeader = styled.header`
 export const CardDes = styled.div`
   padding: 8px;
 `;
+
+export const CocktailsContainer = styled.div`
+  margin: 16px 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-gap: 20px;
+`;
