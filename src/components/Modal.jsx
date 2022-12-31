@@ -40,11 +40,20 @@ const Modal = () => {
         return <OrderDetails />;
     }
   };
+  const handleClick = (direction) => {
+    let newStep = currentStep;
+    direction === "next" ? newStep++ : newStep--;
+    newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
+  };
   return (
     <ModalContainerStyle>
       <ModalContentStyle>
         <Stepper steps={steps} currentStep={currentStep} />
-        <FormControl />
+        <FormControl
+          handleClick={handleClick}
+          currentStep={currentStep}
+          steps={steps}
+        />
       </ModalContentStyle>
     </ModalContainerStyle>
   );
