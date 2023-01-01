@@ -93,7 +93,7 @@ const PersonInfo = ({ handleClick, currentStep, steps, handleBackButton }) => {
           <label htmlFor="PhoneNumber">Phone Number</label>
           <InputStyle
             ref={numberRef}
-            type="text"
+            type="number"
             id="PhoneNumber"
             name="PhoneNumber"
             placeholder="Your Phone Number.."
