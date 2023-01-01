@@ -6,6 +6,7 @@ import {
   getIngredientsRequest,
 } from "../../api/CocktailsApi";
 import {
+  replaceAlcoholic,
   replaceCategories,
   replaceDrinks,
   replaceGlasses,
@@ -85,7 +86,8 @@ export const getAlcoholicTypes = () => {
   return async (dispatch) => {
     try {
       const res = await getAlcoholicTypesRequest();
-      dispatch(replaceGlasses(res));
+      console.log(res);
+      dispatch(replaceAlcoholic(res));
     } catch (e) {
       dispatch(
         showNotification({

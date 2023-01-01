@@ -53,7 +53,7 @@ export async function getCategoriesRequest() {
 }
 
 export async function getAlcoholicTypesRequest() {
-  const res = await fetch(`${endpoint}list.php?c=list`);
+  const res = await fetch(`${endpoint}list.php?a=list`);
 
   const data = await res.json();
 
@@ -62,5 +62,5 @@ export async function getAlcoholicTypesRequest() {
     throw new Error(data.error.message || "Could not login!.");
   }
 
-  console.log(data);
+  return data.drinks;
 }

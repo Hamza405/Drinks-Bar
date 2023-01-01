@@ -1,34 +1,60 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 import { ButtonStyle } from "../../../styles/Header";
 import {
   InputWrapperStyle,
   FormControlContainer,
   SelectStyle,
 } from "../../../styles/StepperStyles";
+
+const IngredientWrapper = styled.div`
+  width: 250px;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-item: center;
+`;
+const IngredientItemWrapper = styled.div`
+  background-color: orange;
+  color: white;
+  margin: 0.5rem 0;
+   padding 0.2rem;
+  border: solid 1px gray;
+  cursor:pointer;
+`;
 const Order = ({ handleBackButton, currentStep, steps, handleClick }) => {
   const { categoriesList, ingredientsList, glassesList, alcoholicTypesList } =
     useSelector((state) => state.drinks);
 
   const [category, setCategory] = useState("");
   const [glass, setGlass] = useState("");
-  const [ingredient, setIngredient] = useState("");
+  const [ingredient, setIngredient] = useState([]);
   const [alcoholicType, setAlcoholicType] = useState("");
+
+  const addIngredientHandler = (e) => {
+    if (!ingredient.includes(e.target.value)) {
+      setIngredient((prev) => [...prev, e.target.value]);
+    }
+  };
+
+  const handleDeleteIngredient = (ing) => {
+    const array = ingredient.filter((item) => item !== ing);
+    setIngredient(array);
+  };
 
   useEffect(() => {
     if (categoriesList.length > 0) {
       setCategory(categoriesList[0].strCategory);
     }
-    if (ingredientsList.length > 0) {
-      setIngredient(ingredientsList[0].strIngredient1);
-    }
-    if (glassesList.length > 0) {
+    if (glassesList && glassesList.length > 0) {
       setGlass(glassesList[0].strGlass);
     }
     if (alcoholicTypesList.length > 0) {
       setAlcoholicType(alcoholicTypesList[0].strAlcoholic);
     }
-  }, [categoriesList, ingredientsList, glassesList, alcoholicTypesList]);
+  }, [categoriesList, glassesList, alcoholicTypesList]);
 
   const submit = (e) => {
     e.preventDefault();
@@ -55,9 +81,9 @@ const Order = ({ handleBackButton, currentStep, steps, handleClick }) => {
             id="glassType"
             onChange={(e) => setGlass(e.target.value)}
           >
-            {/* {glassesList.map((item, index) => (
+            {glassesList.map((item, index) => (
               <option key={index}>{item.strGlass}</option>
-            ))} */}
+            ))}
           </SelectStyle>
         </InputWrapperStyle>
         <InputWrapperStyle>
@@ -71,14 +97,22 @@ const Order = ({ handleBackButton, currentStep, steps, handleClick }) => {
             ))}
           </SelectStyle>
           <label htmlFor="ingredients">Ingredients</label>
-          <SelectStyle
-            id="ingredients"
-            onChange={(e) => setIngredient(e.target.value)}
-          >
+          <SelectStyle id="ingredients" onChange={addIngredientHandler}>
             {ingredientsList.map((item, index) => (
               <option key={index}>{item.strIngredient1}</option>
             ))}
           </SelectStyle>
+          <IngredientWrapper>
+            {ingredient.length > 0 &&
+              ingredient.map((item) => (
+                <IngredientItemWrapper
+                  onClick={() => handleDeleteIngredient(item)}
+                  key={item}
+                >
+                  {item}
+                </IngredientItemWrapper>
+              ))}
+          </IngredientWrapper>
         </InputWrapperStyle>
 
         <FormControlContainer>
