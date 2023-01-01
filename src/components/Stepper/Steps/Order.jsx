@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setOrderInfo } from "../../../store/slices/CocktailsSlice";
 import { ButtonStyle } from "../../../styles/Header";
 import {
   InputWrapperStyle,
@@ -27,6 +28,7 @@ const IngredientItemWrapper = styled.div`
 const Order = ({ handleBackButton, currentStep, steps, handleClick }) => {
   const { categoriesList, ingredientsList, glassesList, alcoholicTypesList } =
     useSelector((state) => state.drinks);
+  const dispatch = useDispatch();
 
   const [category, setCategory] = useState("");
   const [glass, setGlass] = useState("");
@@ -58,7 +60,15 @@ const Order = ({ handleBackButton, currentStep, steps, handleClick }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(category);
+    dispatch(
+      setOrderInfo({
+        category,
+        glass,
+        ingredient,
+        alcoholicType,
+      })
+    );
+    handleClick("next");
   };
   return (
     <div style={{ marginTop: "3.5rem" }}>

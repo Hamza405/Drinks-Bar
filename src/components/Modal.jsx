@@ -20,7 +20,7 @@ import {
 } from "../store/actions/CocktailsActions";
 
 const Modal = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
   const steps = ["Personal Info", "Order", "Order Details"];
   const dispatch = useDispatch();
 
@@ -65,7 +65,14 @@ const Modal = () => {
           />
         );
       case 3:
-        return <OrderDetails />;
+        return (
+          <OrderDetails
+            handleClick={handleClick}
+            currentStep={currentStep}
+            steps={steps}
+            handleBackButton={handleBackButton}
+          />
+        );
     }
   };
   return (
