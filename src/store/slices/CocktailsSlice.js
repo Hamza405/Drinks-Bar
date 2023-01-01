@@ -5,6 +5,7 @@ const initValue = {
   categoriesList: [],
   ingredientsList: [],
   glassesList: [],
+  orderCommand: {},
 };
 
 const todoSlice = createSlice({
@@ -14,8 +15,33 @@ const todoSlice = createSlice({
     replaceDrinks: (state, action) => {
       state.cocktailsList = action.payload;
     },
+    replaceIngredients: (state, action) => {
+      state.ingredientsList = action.payload;
+    },
+    replaceCategories: (state, action) => {
+      state.categoriesList = action.payload;
+    },
+    replaceGlasses: (state, action) => {
+      state.glassesList = action.payload;
+    },
+    setOrderCommand: (state, action) => {
+      state.orderCommand = {
+        ...state.orderCommand,
+        ...action.payload,
+      };
+    },
+    clearOrderCommand: (state) => {
+      state.orderCommand = {};
+    },
   },
 });
 
-export const { replaceDrinks } = todoSlice.actions;
+export const {
+  replaceDrinks,
+  replaceCategories,
+  replaceGlasses,
+  replaceIngredients,
+  setOrderCommand,
+  clearOrderCommand,
+} = todoSlice.actions;
 export default todoSlice.reducer;

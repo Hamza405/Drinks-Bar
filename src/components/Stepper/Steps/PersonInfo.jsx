@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setOrderCommand } from "../../../store/slices/CocktailsSlice";
 import styled from "styled-components";
 import { ButtonStyle } from "../../../styles/Header";
 
@@ -31,6 +33,7 @@ const FormControlContainer = styled.div`
 `;
 
 const PersonInfo = ({ handleClick, currentStep, steps, handleBackButton }) => {
+  const dispatch = useDispatch();
   const fNameRef = useRef();
   const lNameRef = useRef();
   const emailRef = useRef();
@@ -71,7 +74,7 @@ const PersonInfo = ({ handleClick, currentStep, steps, handleBackButton }) => {
       setPhoneError({ message: "Please enter your phone number" });
       return;
     }
-
+    dispatch(setOrderCommand(data));
     handleClick("next");
   };
   return (
