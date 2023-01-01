@@ -4,8 +4,12 @@ const initValue = {
   cocktailsList: [],
   categoriesList: [],
   ingredientsList: [],
+  alcoholicTypesList: [],
   glassesList: [],
-  orderCommand: {},
+  orderCommand: {
+    personalInfo: {},
+    orderInfo: {},
+  },
 };
 
 const todoSlice = createSlice({
@@ -24,9 +28,16 @@ const todoSlice = createSlice({
     replaceGlasses: (state, action) => {
       state.glassesList = action.payload;
     },
-    setOrderCommand: (state, action) => {
-      state.orderCommand = {
-        ...state.orderCommand,
+    replaceAlcoholic: (state, action) => {
+      state.alcoholicTypesList = action.payload;
+    },
+    setOrderPersonalInfo: (state, action) => {
+      state.orderCommand.personalInfo = {
+        ...action.payload,
+      };
+    },
+    setOrderInfo: (state, action) => {
+      state.orderCommand.orderInfo = {
         ...action.payload,
       };
     },
@@ -41,7 +52,9 @@ export const {
   replaceCategories,
   replaceGlasses,
   replaceIngredients,
-  setOrderCommand,
+  replaceAlcoholic,
+  setOrderPersonalInfo,
+  setOrderInfo,
   clearOrderCommand,
 } = todoSlice.actions;
 export default todoSlice.reducer;

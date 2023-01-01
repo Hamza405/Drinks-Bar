@@ -1,4 +1,5 @@
 import {
+  getAlcoholicTypesRequest,
   getCategoriesRequest,
   getCocktailsRequest,
   getGlassesRequest,
@@ -67,6 +68,23 @@ export const getGlasses = () => {
   return async (dispatch) => {
     try {
       const res = await getGlassesRequest();
+      dispatch(replaceGlasses(res));
+    } catch (e) {
+      dispatch(
+        showNotification({
+          status: ERROR_STATUS,
+          message: "Some thing wrong, Try again later!",
+        })
+      );
+      console.log(e);
+    }
+  };
+};
+
+export const getAlcoholicTypes = () => {
+  return async (dispatch) => {
+    try {
+      const res = await getAlcoholicTypesRequest();
       dispatch(replaceGlasses(res));
     } catch (e) {
       dispatch(

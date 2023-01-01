@@ -52,3 +52,41 @@ export const LineStyle = styled.div`
   transition: all 500ms ease-out;
   border: solid 1px ${(props) => (props.isCompleted ? "orange" : "DimGray")};
 `;
+
+export const InputStyle = styled.input`
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 0.75rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+`;
+
+export const InputWrapperStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`;
+
+export const ErrorTextStyle = styled.div`
+  color: red;
+  padding: 8px 0;
+  margin-bottom: 0.5rem;
+`;
+
+export const FormControlContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SelectStyle = styled.select`
+  background-color: transparent;
+  margin: 1rem 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  line-height: inherit;
+`;

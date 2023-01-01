@@ -1,36 +1,13 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setOrderCommand } from "../../../store/slices/CocktailsSlice";
-import styled from "styled-components";
+import { setOrderPersonalInfo } from "../../../store/slices/CocktailsSlice";
+import {
+  InputWrapperStyle,
+  ErrorTextStyle,
+  FormControlContainer,
+  InputStyle,
+} from "../../../styles/StepperStyles";
 import { ButtonStyle } from "../../../styles/Header";
-
-const InputStyle = styled.input`
-  width: 100%;
-  padding: 12px 20px;
-  margin-top: 0.75rem;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-`;
-
-const InputWrapperStyle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-`;
-
-const ErrorTextStyle = styled.div`
-  color: red;
-  padding: 8px 0;
-  margin-bottom: 0.5rem;
-`;
-
-const FormControlContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const PersonInfo = ({ handleClick, currentStep, steps, handleBackButton }) => {
   const dispatch = useDispatch();
@@ -74,7 +51,7 @@ const PersonInfo = ({ handleClick, currentStep, steps, handleBackButton }) => {
       setPhoneError({ message: "Please enter your phone number" });
       return;
     }
-    dispatch(setOrderCommand(data));
+    dispatch(setOrderPersonalInfo(data));
     handleClick("next");
   };
   return (

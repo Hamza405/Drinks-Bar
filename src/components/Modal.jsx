@@ -13,6 +13,7 @@ import PersonInfo from "./Stepper/Steps/PersonInfo";
 
 import { setModalIsOpen } from "../store/slices/UiSlice";
 import {
+  getAlcoholicTypes,
   getCategories,
   getGlasses,
   getIngredients,
@@ -27,6 +28,7 @@ const Modal = () => {
     dispatch(getGlasses());
     dispatch(getCategories());
     dispatch(getIngredients());
+    dispatch(getAlcoholicTypes());
   }, []);
 
   const handleClick = (direction) => {
@@ -54,7 +56,14 @@ const Modal = () => {
           />
         );
       case 2:
-        return <Order />;
+        return (
+          <Order
+            handleClick={handleClick}
+            currentStep={currentStep}
+            steps={steps}
+            handleBackButton={handleBackButton}
+          />
+        );
       case 3:
         return <OrderDetails />;
     }
